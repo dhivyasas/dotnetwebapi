@@ -31,23 +31,24 @@ namespace dotnetwebapi
 
             services.AddControllers();
             services.AddOpenApiDocument();
-            //services.AddDbContext<FruitContext>(opt =  opt.UseInMemoryDatabase("FruitList"));
+             services.AddDbContext<FruitContext>(opt => opt.UseInMemoryDatabase("FruitList"));
             //services.AddSwaggerGen(c =>
-           // {
-             //   c.SwaggerDoc("v1", new OpenApiInfo { Title = "dotnetwebapi", Version = "v1" });
-           // });
+            //{
+                //c.SwaggerDoc("v1", new OpenApiInfo { Title = "dotnetwebapi", Version = "v1" });
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(builder =>
+            //Accept All HTTP Request Methods from all origins
+app.UseCors(builder =>
 builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 //app.UseSwagger();
-               // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnetwebapi v1"));
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnetwebapi v1"));
             }
 
             app.UseHttpsRedirection();
